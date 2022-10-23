@@ -8,7 +8,9 @@ for(var i = 0; i<NoOfDrums; i++)
   document.querySelectorAll(".drum")[i].addEventListener("click",function (){
 
   var buttonInnerHTML = this.innerHTML;
+  console.log(buttonInnerHTML)
   PlaySound(buttonInnerHTML);
+  ButtonAnimation(buttonInnerHTML);
 
   });
 }
@@ -18,6 +20,7 @@ for(var i = 0; i<NoOfDrums; i++)
 document.addEventListener("keydown",function(event)
 {
   PlaySound(event.key);
+  ButtonAnimation(event.key);
 });
 
 // Function to play sound
@@ -63,4 +66,19 @@ function PlaySound(key)
     default: console.log(buttonInnerHTML);
 
   }
+}
+
+// Adding animation to the button, so that user know, which button is pressed
+
+function ButtonAnimation(button){
+  // selecting the class according to the button pressed
+  var activeButton = document.querySelector("."+button);
+
+  // adding pressed class to pressed button class
+  activeButton.classList.add("pressed");
+
+  // setting timeout so that the highlighted button gets back to normal
+  setTimeout(function(){
+    activeButton.classList.remove("pressed");
+  }, 100);
 }
