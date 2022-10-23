@@ -1,4 +1,6 @@
 
+// Detecting Button pressed .
+
 var NoOfDrums = document.querySelectorAll(".drum").length;
 
 for(var i = 0; i<NoOfDrums; i++)
@@ -6,8 +8,23 @@ for(var i = 0; i<NoOfDrums; i++)
   document.querySelectorAll(".drum")[i].addEventListener("click",function (){
 
   var buttonInnerHTML = this.innerHTML;
+  PlaySound(buttonInnerHTML);
 
-  switch (buttonInnerHTML) {
+  });
+}
+
+// Detecting Keyboard pressed button
+
+document.addEventListener("keydown",function(event)
+{
+  PlaySound(event.key);
+});
+
+// Function to play sound
+
+function PlaySound(key)
+{
+  switch (key) {
     case "w":
       var tom1 = new Audio("sounds/tom-1.mp3");
       tom1.play();
@@ -46,5 +63,4 @@ for(var i = 0; i<NoOfDrums; i++)
     default: console.log(buttonInnerHTML);
 
   }
-  });
 }
